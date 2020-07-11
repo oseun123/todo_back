@@ -1,18 +1,19 @@
 "use strict";
 const nodemailer = require("nodemailer");
-const sgTransport = require("nodemailer-sendgrid-transport");
 require("dotenv").config();
 
 const { MAIL_USER, MAIL_PASS } = process.env;
-const options = {
-  auth: {
-    user: MAIL_USER,
-    pass: MAIL_PASS,
-  },
-};
 
 async function sendEmail(to, from, subject, body) {
-  let transporter = nodemailer.createTransport(sgTransport(options));
+  let transporter = nodemailer.createTransport({
+    host: "smtp.ethereal.email",
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: MAIL_USER,
+      pass: MAIL_PASS,
+    },
+  });
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
