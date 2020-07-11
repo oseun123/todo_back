@@ -6,7 +6,7 @@ const { MAIL_USER, MAIL_PASS } = process.env;
 
 async function sendEmail(to, from, subject, body) {
   let transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
+    host: "SendGrid",
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
