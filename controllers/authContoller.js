@@ -74,13 +74,13 @@ exports.sendResetLink = async (
   next
 ) => {
   try {
-    const user = await User.findOne({ where: { email: email.trim() } });
+    const user = await User.findOne({ where: { email: email } });
     //  const user = await User.findOne({ where: { email: email } });
     if (user === null) {
       return res.status(400).send({
         status: "error",
         message: "Email not found",
-        payload: { users: user },
+        payload: {},
       });
     }
     const token = createToken(user);
