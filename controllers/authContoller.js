@@ -75,11 +75,11 @@ exports.sendResetLink = async (
 ) => {
   try {
     const user = await User.findOne({ where: { email: email } });
-    if (Object.keys(user).length === 0) {
+    if (!user) {
       return res.status(400).send({
         status: "error",
         message: "Email not found",
-        payload: { user },
+        payload: {},
       });
     }
     const token = createToken(user);
