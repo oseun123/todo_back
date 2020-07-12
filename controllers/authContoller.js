@@ -74,7 +74,7 @@ exports.sendResetLink = async (
   next
 ) => {
   try {
-    const user = User.findOne({ where: { email: email } });
+    const user = await User.findOne({ where: { email: email } });
     if (!user) {
       return res.status(400).send({
         status: "error",
