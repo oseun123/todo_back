@@ -1,18 +1,19 @@
 "use strict";
 const nodemailer = require("nodemailer");
 require("dotenv").config();
-const sgTransport = require("nodemailer-sendgrid-transport");
 
 const { MAIL_USER, MAIL_PASS } = process.env;
-const options = {
-  auth: {
-    api_user: MAIL_USER,
-    api_key: MAIL_PASS,
-  },
-};
 
 async function sendEmail(to, from, subject, body) {
-  let transporter = nodemailer.createTransport(sgTransport(options));
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    // port: 587,
+    // secure: false, // true for 465, false for other ports
+    auth: {
+      user: MAIL_USER,
+      pass: MAIL_PASS,
+    },
+  });
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
