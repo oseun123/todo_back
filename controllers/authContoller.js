@@ -79,7 +79,7 @@ exports.sendResetLink = async (
       return res.status(400).send({
         status: "error",
         message: "Email not found",
-        payload: {},
+        payload: { users: user },
       });
     }
     const token = createToken(user);
