@@ -75,7 +75,7 @@ exports.sendResetLink = async (
 ) => {
   try {
     const user = User.findOne({ where: { email: email } });
-    if (!user) {
+    if (Object.keys(user).length === 0 && user.constructor === Object) {
       return res.status(400).send({
         status: "error",
         message: "Email not found",
@@ -83,8 +83,10 @@ exports.sendResetLink = async (
       });
     }
     const token = createToken(user);
-    const port = 3000;
-    const link = `${protocol}://${hostname}:${port}/reset_password/${token}`;
+    // dev const port =":3000";
+    const port = "";
+
+    const link = `${protocol}://${hostname}${port}/reset_password/${token}`;
     const sent = await sendEmail(
       email,
       "noreply@best.dev",
