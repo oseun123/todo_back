@@ -2,7 +2,7 @@
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 
-const { MAIL_USER, MAIL_PASS } = process.env;
+// const { MAIL_USER, MAIL_PASS } = process.env;
 
 async function sendEmail(to, from, subject, body) {
   let transporter = nodemailer.createTransport({
@@ -10,8 +10,8 @@ async function sendEmail(to, from, subject, body) {
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: MAIL_USER,
-      pass: MAIL_PASS,
+      user: ENV["SENDGRID_USERNAME"],
+      pass: ENV["SENDGRID_PASSWORD"],
     },
   });
 
