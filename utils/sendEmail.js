@@ -10,8 +10,8 @@ async function sendEmail(to, from, subject, body) {
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: MAIL_USER,
-      pass: MAIL_PASS,
+      user: "oseun04@gmail.com",
+      pass: "oluwaseun91",
     },
   });
 
