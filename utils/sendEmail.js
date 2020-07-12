@@ -6,12 +6,10 @@ const { MAIL_USER, MAIL_PASS } = process.env;
 
 async function sendEmail(to, from, subject, body) {
   let transporter = nodemailer.createTransport({
-    service: "gmail",
-    port: 465,
-    // secure: false, // true for 465, false for other ports
+    host: "smtp.sendgrid.net",
     auth: {
-      user: "oseun04@gmail.com",
-      pass: "oluwaseun91",
+      user: MAIL_USER,
+      pass: MAIL_PASS,
     },
   });
 
