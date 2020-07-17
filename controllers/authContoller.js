@@ -85,9 +85,10 @@ exports.sendResetLink = async (
     }
     const token = createToken(user);
     // dev const port =":3000";
-    const port = "";
+    // const port = "";
 
-    const link = `${protocol}://${hostname}${port}/reset_password/${token}`;
+    // const link = `${protocol}://${hostname}${port}/reset_password/${token}`;
+    const link = `https://the-best-todo.herokuapp.com/reset-password/${token}`;
     const sent = await sendEmail(
       email,
       "noreply@best.dev",
